@@ -10,7 +10,13 @@ VOICE_CHANNEL_ID = 1454101701404397652
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
+from flask import Flask
 
+app = Flask(__name__)
+
+@app.get("/")
+def read_root():
+    return {"Python": "on Vercel"}
 
 async def keep_voice_connected():
     await bot.wait_until_ready()
